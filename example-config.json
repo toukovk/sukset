@@ -1,0 +1,58 @@
+{
+  "_note": "Example table for tests etc.",
+  "childConfig": {
+    "applicableFor": {
+      "min": 60,
+      "max": 125
+    },
+    "tableRows": [
+      {
+        "childLength": 90,
+        "skiLength": 91,
+        "poleLength": 92
+      },
+      {
+        "childLength": 100,
+        "skiLength": 101,
+        "poleLength": 102
+      },
+      {
+        "childLength": 110,
+        "skiLength": 111,
+        "poleLength": 112
+      },
+      {
+        "childLength": 120,
+        "skiLength": 121,
+        "poleLength": 122
+      }
+    ]
+  },
+
+  "adultConfig": {
+    "applicableFor": {
+      "min": 115,
+      "max": 250
+    },
+    "skiAdditions": {
+      "classic": {
+        "min": 5,
+        "max": 6
+      },
+      "skating": {
+        "min": 7,
+        "max": 8
+      }
+    },
+    "poleMultipliers": {
+      "classic": {
+        "min": 1,
+        "max": 1.1
+      },
+      "skating": {
+        "min": 1.1,
+        "max": 1.2
+      }
+    }
+  }
+}

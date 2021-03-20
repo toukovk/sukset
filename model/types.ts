@@ -5,16 +5,14 @@ export interface ChildTableRow {
   poleLength: number;
 }
 
-export interface LengthRange {
+export interface MinMax {
   min: number;
   max: number;
 }
-
 export interface SkiAndPoleSizes {
-  skis: LengthRange;
-  poles: LengthRange;
+  skis: MinMax;
+  poles: MinMax;
 }
-
 export interface Sizes {
   classic: SkiAndPoleSizes;
   skating: SkiAndPoleSizes;
@@ -34,3 +32,24 @@ export type Recommendation =
       sizes: Sizes;
       rows: ChildTableRow[];
     };
+
+export interface MinxMaxPerStyle {
+  classic: MinMax;
+  skating: MinMax;
+}
+
+export interface ChildConfig {
+  applicableFor: MinMax;
+  tableRows: ChildTableRow[];
+}
+
+export interface AdultConfig {
+  applicableFor: MinMax;
+  skiAdditions: MinxMaxPerStyle;
+  poleMultipliers: MinxMaxPerStyle;
+}
+
+export interface Config {
+  childConfig: ChildConfig;
+  adultConfig: AdultConfig;
+}
