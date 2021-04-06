@@ -3,13 +3,11 @@ import {
   ChildTableRow,
   Config,
   MinMax,
-  Recommendation,
+  Recommender,
   Sizes,
 } from "./types";
 
 type ResultType = "children" | "adults" | "both";
-
-type Recommender = (length: number) => Recommendation | undefined;
 
 export const getRecommendation = (config: Config): Recommender => {
   const { adultConfig, childConfig } = config;

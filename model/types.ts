@@ -18,6 +18,8 @@ export interface Sizes {
   skating: SkiAndPoleSizes;
 }
 
+export type Recommender = (length: number) => Recommendation | undefined;
+
 export type Recommendation =
   | {
       type: "only-sizes";
