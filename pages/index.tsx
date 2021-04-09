@@ -1,7 +1,34 @@
+import fs from "fs";
+import { GetStaticProps } from "next";
 import Head from "next/head";
+import path from "path";
+import { RecommenderComponent } from "../components/RecommenderComponent";
+import { getRecommendation } from "../model/logic";
+import { Config } from "../model/types";
 import styles from "../styles/Home.module.css";
 
-export default function Home(): JSX.Element {
+interface HomeProps {
+  config: Config;
+}
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  const fileContent = fs.readFileSync(
+    path.join(process.cwd(), "example-config.json"),
+    "utf8"
+  );
+  const config = JSON.parse(fileContent);
+
+  return Promise.resolve({
+    props: {
+      config,
+    },
+    revalidate: false,
+  });
+};
+
+export default function Home(props: HomeProps): JSX.Element {
+  const recommender = getRecommendation(props.config);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,10 +41,12 @@ export default function Home(): JSX.Element {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <p className={styles.description}>
+        <RecommenderComponent recommender={recommender} />
+
+        {/* <p className={styles.description}>
           Get started by editing{" "}
           <code className={styles.code}>pages/index.js</code>
-        </p>
+        </p> 
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
@@ -47,7 +76,7 @@ export default function Home(): JSX.Element {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
-        </div>
+        </div> */}
       </main>
 
       <footer className={styles.footer}>
