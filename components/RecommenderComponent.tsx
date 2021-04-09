@@ -11,13 +11,15 @@ interface RecommenderComponentProps {
   recommender: Recommender;
 }
 
-export const RecommenderComponent = (
-  props: RecommenderComponentProps
-): JSX.Element => {
+export const RecommenderComponent = ({
+  recommender,
+}: RecommenderComponentProps): JSX.Element => {
   const [lengthStr, setLengthStr] = useState<string>("");
   const length = parseInt(lengthStr, 10);
 
-  const recommendation = !isNaN(length) ? props.recommender(length) : undefined;
+  const recommendation = !isNaN(length)
+    ? recommender.getRecommendation(length)
+    : undefined;
 
   const onInputChanged = (e: SyntheticEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
@@ -26,9 +28,11 @@ export const RecommenderComponent = (
 
   return (
     <>
+      <span>
+        Hihtäjän pituus ({rangeToString(recommender.applicableFor)} cm)
+      </span>
       <input
         type="text"
-        placeholder="Pituus"
         /**  
            TODO pattern of only numbers
            TODO min/max values?

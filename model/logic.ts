@@ -2,6 +2,7 @@ import {
   AdultConfig,
   ChildTableRow,
   Config,
+  GetRecommendation,
   MinMax,
   Recommender,
   Sizes,
@@ -9,7 +10,12 @@ import {
 
 type ResultType = "children" | "adults" | "both";
 
-export const getRecommendation = (config: Config): Recommender => {
+export const getRecommender = (config: Config): Recommender => ({
+  applicableFor: applicableeFor(config),
+  getRecommendation: getRecommendation(config),
+});
+
+const getRecommendation = (config: Config): GetRecommendation => {
   const { adultConfig, childConfig } = config;
 
   const childRowsSorted = [...childConfig.tableRows].sort(
@@ -40,6 +46,13 @@ export const getRecommendation = (config: Config): Recommender => {
       type: "only-sizes",
       sizes: calculateSizes(adultConfig, length),
     };
+  };
+};
+
+const applicableeFor = ({ adultConfig, childConfig }: Config): MinMax => {
+  return {
+    min: childConfig.applicableFor.min,
+    max: adultConfig.applicableFor.max,
   };
 };
 

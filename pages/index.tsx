@@ -3,7 +3,7 @@ import { GetStaticProps } from "next";
 import Head from "next/head";
 import path from "path";
 import { RecommenderComponent } from "../components/RecommenderComponent";
-import { getRecommendation } from "../model/logic";
+import { getRecommender } from "../model/logic";
 import { Config } from "../model/types";
 import styles from "../styles/Home.module.css";
 
@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 };
 
 export default function Home(props: HomeProps): JSX.Element {
-  const recommender = getRecommendation(props.config);
+  const recommender = getRecommender(props.config);
 
   return (
     <div className={styles.container}>

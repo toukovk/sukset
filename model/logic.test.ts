@@ -1,10 +1,10 @@
 import * as exampleConfig from "../example-config.json";
-import { getRecommendation } from "./logic";
+import { getRecommender } from "./logic";
 import { Recommendation } from "./types";
 
-const recommend = getRecommendation(exampleConfig);
+const recommend = getRecommender(exampleConfig).getRecommendation;
 
-describe("Calculation logic", () => {
+describe("getRecommendation", () => {
   describe("for lengths outside applicable ranges", () => {
     it("should return undefined for too small length", () => {
       const recommendation = recommend(50);
@@ -243,6 +243,17 @@ describe("Calculation logic", () => {
         },
       };
       expect(recommendation).toEqual(expected);
+    });
+  });
+});
+
+describe("applicableFor", () => {
+  it("should get min from childConfig and max from adultConfig", () => {
+    const applicableFor = getRecommender(exampleConfig).applicableFor;
+
+    expect(applicableFor).toEqual({
+      min: 60,
+      max: 250,
     });
   });
 });

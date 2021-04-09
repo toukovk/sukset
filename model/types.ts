@@ -18,7 +18,12 @@ export interface Sizes {
   skating: SkiAndPoleSizes;
 }
 
-export type Recommender = (length: number) => Recommendation | undefined;
+export type GetRecommendation = (length: number) => Recommendation | undefined;
+
+export interface Recommender {
+  getRecommendation: GetRecommendation;
+  applicableFor: MinMax;
+}
 
 export type Recommendation =
   | {
