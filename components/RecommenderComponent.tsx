@@ -68,7 +68,7 @@ const renderSizes = ({ classic, skating }: Sizes): JSX.Element => {
   return (
     <div className={styles.adults}>
       <div className={styles.adultsTitle}>
-        Aikuisille ja isommille lapsille:
+        Aikuisille ja isommille lapsille (laskettu pituudesta):
       </div>
       <span>Sukset</span>
       <ul>
@@ -88,7 +88,7 @@ const renderTableRows = (rows: ChildTableRow[]): JSX.Element => {
   return (
     <div className={styles.children}>
       <div className={styles.childrenTitle}>
-        Pienempien hiihtäjien taulukosta:
+        Pienemmille hiihtäjille (taulukosta):
       </div>
       <table>
         <thead>
