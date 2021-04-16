@@ -63,9 +63,6 @@ export default function Home(props: HomeProps): JSX.Element {
       </main>
 
       <footer className={styles.footer}>
-        <p className={styles.languageSelector}>
-          {renderLanguage("fi")} | {renderLanguage("en")}
-        </p>
         <p>
           {i.footer.beforeLink + " "}
           <a
@@ -73,9 +70,21 @@ export default function Home(props: HomeProps): JSX.Element {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {i.footer.linkTitle.replace(/ /g, "\u00a0")}
+            {nonBreakingSpaces(i.footer.linkTitle)}
           </a>{" "}
           {i.footer.afterLink}
+          {" "}
+          {nonBreakingSpaces(i.footer.sourcesAt)}&nbsp;
+          <a
+              href="https://github.com/toukovk/sukset"
+              target="_blank"
+              rel="noopener noreferrer"
+          >
+            {i.footer.github}
+          </a>
+        </p>
+        <p className={styles.languageSelector}>
+          {renderLanguage("fi")} | {renderLanguage("en")}
         </p>
       </footer>
     </div>
@@ -97,3 +106,5 @@ const createRenderLanguage = (activeLanguage: Language) => (
     );
   }
 };
+
+const nonBreakingSpaces = (text: string): string => text.replace(/ /g, "\u00a0")

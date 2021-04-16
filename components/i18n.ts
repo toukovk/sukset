@@ -13,6 +13,8 @@ export const i18n = {
       linkTitle: "Varusteet kuntoon",
       afterLink:
         "-sivuun, joka sisältää hyödyllistä tietoa hiihtovälineiden valinnasta.",
+      sourcesAt: "Lähdekoodit",
+      github: "Githubissa",
     },
     poles: "Sauvat",
     skis: "Sukset",
@@ -30,9 +32,11 @@ export const i18n = {
     },
     enterSkierHeight: "Enter skier's height",
     footer: {
-      beforeLink: "Based on Suomen Latu's page",
+      beforeLink: "Based on Suomen Latu's",
       linkTitle: "Varusteet kuntoon",
       afterLink: "that contains useful information on ski equipment.",
+      sourcesAt: "Sources at",
+      github: "Github",
     },
     poles: "Poles",
     skis: "Skis",

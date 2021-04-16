@@ -43,6 +43,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-flow: column;
   background: #fefefe;
 }
 
@@ -50,14 +51,9 @@
   text-align: center;
   padding: 0 1rem;
   margin: 0.5rem 0;
+  line-height: 1.5rem;
 }
 
-@media (max-width: 1000px) {
-  .footer {
-    flex-flow: column;
-  }
-
-  .languageSelector {
-    order: 1;
-  }
+.languageSelector {
+  white-space: nowrap;
 }
