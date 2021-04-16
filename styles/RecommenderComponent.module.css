@@ -11,13 +11,19 @@ hr.recommendationDivider {
   margin: 1rem 0;
 }
 
-.children {
-  margin: 1rem 0;
+.adults, .children {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-bottom: 1rem;
 }
+.adults table,
 .children table {
   border-collapse: collapse;
 }
 
+.adults table th,
+.adults table td,
 .children table th,
 .children table td {
   border: 1px solid #999;
@@ -25,6 +31,7 @@ hr.recommendationDivider {
   padding: 0.5rem;
 }
 
+.adults table td,
 .children table td {
   text-align: left;
 }

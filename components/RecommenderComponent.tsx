@@ -80,24 +80,27 @@ const renderSizes = (
   return (
     <div className={styles.adults}>
       <div className={styles.adultsTitle}>{i.adultsTitle}:</div>
-      <span>{i.skis}</span>
-      <ul>
-        <li>
-          {i.styles.traditional}: {rangeToString(classic.skis)}
-        </li>
-        <li>
-          {i.styles.skating}: {rangeToString(skating.skis)}
-        </li>
-      </ul>
-      <span>{i.poles}</span>
-      <ul>
-        <li>
-          {i.styles.traditional}: {rangeToString(classic.poles)}
-        </li>
-        <li>
-          {i.styles.skating}: {rangeToString(skating.poles)}
-        </li>
-      </ul>
+      <table>
+        <thead>
+        <tr>
+          <th> </th>
+          <th>{i.skis} (cm)</th>
+          <th>{i.poles} (cm)</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr key="traditional">
+            <td>{i.styles.traditional}</td>
+            <td>{rangeToString(classic.skis)}</td>
+            <td>{rangeToString(classic.poles)}</td>
+          </tr>
+          <tr key="skating">
+            <td>{i.styles.skating}</td>
+            <td>{rangeToString(skating.skis)}</td>
+            <td>{rangeToString(skating.poles)}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };
