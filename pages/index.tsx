@@ -13,7 +13,7 @@ interface HomeProps {
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const fileContent = fs.readFileSync(
-    path.join(process.cwd(), "example-config.json"),
+    path.join(process.cwd(), "config.json"),
     "utf8"
   );
   const config = JSON.parse(fileContent);
