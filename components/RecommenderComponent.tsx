@@ -7,14 +7,20 @@ import {
   Sizes,
 } from "../model/types";
 import styles from "../styles/RecommenderComponent.module.css";
+import { i18n, I18nForLang, Language } from "./i18n";
 interface RecommenderComponentProps {
+  lang: Language;
   recommender: Recommender;
 }
 
 export const RecommenderComponent = ({
+  lang,
   recommender,
 }: RecommenderComponentProps): JSX.Element => {
   const [lengthStr, setLengthStr] = useState<string>("");
+
+  const i: I18nForLang = i18n[lang];
+
   const length = parseInt(lengthStr, 10);
 
   const recommendation = !isNaN(length)
@@ -29,7 +35,7 @@ export const RecommenderComponent = ({
   return (
     <>
       <p>
-        Syötä hiihtäjän pituus ({rangeToString(recommender.applicableFor)} cm)
+        {i.enterSkierHeight} ({rangeToString(recommender.applicableFor)} cm){" "}
       </p>
       <input
         className={styles.lengthInput}
@@ -41,61 +47,74 @@ export const RecommenderComponent = ({
       {recommendation && (
         <>
           <hr className={styles.recommendationDivider} />
-          {renderRecommendation(recommendation)}
+          {renderRecommendation(i, recommendation)}
         </>
       )}
     </>
   );
 };
 
-const renderRecommendation = (recommendation: Recommendation): JSX.Element => {
+const renderRecommendation = (
+  i: I18nForLang,
+  recommendation: Recommendation
+): JSX.Element => {
   switch (recommendation.type) {
     case "only-sizes":
-      return renderSizes(recommendation.sizes);
+      return renderSizes(i, recommendation.sizes);
     case "only-table-rows":
-      return renderTableRows(recommendation.rows);
+      return renderTableRows(i, recommendation.rows);
     case "both":
       return (
         <>
-          {renderTableRows(recommendation.rows)}
-          {renderSizes(recommendation.sizes)}
+          {renderTableRows(i, recommendation.rows)}
+          {renderSizes(i, recommendation.sizes)}
         </>
       );
   }
 };
 
-const renderSizes = ({ classic, skating }: Sizes): JSX.Element => {
+const renderSizes = (
+  i: I18nForLang,
+  { classic, skating }: Sizes
+): JSX.Element => {
   return (
     <div className={styles.adults}>
-      <div className={styles.adultsTitle}>
-        Aikuisille ja isommille lapsille (laskettu pituudesta):
-      </div>
-      <span>Sukset</span>
+      <div className={styles.adultsTitle}>{i.adultsTitle}:</div>
+      <span>{i.skis}</span>
       <ul>
-        <li>Perinteinen: {rangeToString(classic.skis)}</li>
-        <li>Luistelu: {rangeToString(skating.skis)}</li>
+        <li>
+          {i.styles.traditional}: {rangeToString(classic.skis)}
+        </li>
+        <li>
+          {i.styles.skating}: {rangeToString(skating.skis)}
+        </li>
       </ul>
-      <span>Sauvat</span>
+      <span>{i.poles}</span>
       <ul>
-        <li>Perinteinen: {rangeToString(classic.poles)}</li>
-        <li>Luistelu: {rangeToString(skating.poles)}</li>
+        <li>
+          {i.styles.traditional}: {rangeToString(classic.poles)}
+        </li>
+        <li>
+          {i.styles.skating}: {rangeToString(skating.poles)}
+        </li>
       </ul>
     </div>
   );
 };
 
-const renderTableRows = (rows: ChildTableRow[]): JSX.Element => {
+const renderTableRows = (
+  i: I18nForLang,
+  rows: ChildTableRow[]
+): JSX.Element => {
   return (
     <div className={styles.children}>
-      <div className={styles.childrenTitle}>
-        Pienemmille hiihtäjille (taulukosta):
-      </div>
+      <div className={styles.childrenTitle}>{i.children.title}:</div>
       <table>
         <thead>
           <tr>
-            <th>Lapsen pituus</th>
-            <th>Sukset (cm)</th>
-            <th>Sauvat (cm)</th>
+            <th>{i.children.childHeight}</th>
+            <th>{i.skis} (cm)</th>
+            <th>{i.poles} (cm)</th>
           </tr>
         </thead>
         <tbody>
