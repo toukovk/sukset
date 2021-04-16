@@ -1,8 +1,8 @@
 // All numbers centimeters
 export interface ChildTableRow {
   childLength: number;
-  skiLength: number;
-  poleLength: number;
+  skiLength: number | MinMax;
+  poleLength: number | MinMax;
 }
 
 export interface MinMax {

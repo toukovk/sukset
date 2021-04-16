@@ -106,8 +106,8 @@ const renderTableRows = (rows: ChildTableRow[]): JSX.Element => {
           {rows.map((row) => (
             <tr key={row.childLength}>
               <td>{row.childLength}</td>
-              <td>{row.skiLength}</td>
-              <td>{row.poleLength}</td>
+              <td>{rangeToString(row.skiLength)}</td>
+              <td>{rangeToString(row.poleLength)}</td>
             </tr>
           ))}
         </tbody>
@@ -116,5 +116,11 @@ const renderTableRows = (rows: ChildTableRow[]): JSX.Element => {
   );
 };
 
-const rangeToString = (range: MinMax): string =>
-  `${Math.round(range.min)} - ${Math.round(range.max)}`;
+const rangeToString = (range: number | MinMax): string => {
+  if (typeof range === "number") {
+    return `${range}`;
+  }
+  const min = Math.round(range.min);
+  const max = Math.round(range.max);
+  return `${min} - ${max}`;
+};

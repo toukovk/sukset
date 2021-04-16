@@ -134,8 +134,14 @@ describe("getRecommendation", () => {
         rows: [
           {
             childLength: 120,
-            skiLength: 121,
-            poleLength: 122,
+            skiLength: {
+              min: 121,
+              max: 125,
+            },
+            poleLength: {
+              min: 122,
+              max: 126,
+            },
           },
         ],
         sizes: {
@@ -172,8 +178,14 @@ describe("getRecommendation", () => {
         rows: [
           {
             childLength: 120,
-            skiLength: 121,
-            poleLength: 122,
+            skiLength: {
+              min: 121,
+              max: 125,
+            },
+            poleLength: {
+              min: 122,
+              max: 126,
+            },
           },
         ],
         sizes: {
@@ -215,8 +227,14 @@ describe("getRecommendation", () => {
           },
           {
             childLength: 120,
-            skiLength: 121,
-            poleLength: 122,
+            skiLength: {
+              min: 121,
+              max: 125,
+            },
+            poleLength: {
+              min: 122,
+              max: 126,
+            },
           },
         ],
         sizes: {
