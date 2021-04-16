@@ -6,7 +6,7 @@ import {
   Recommender,
   Sizes,
 } from "../model/types";
-
+import styles from "../styles/RecommenderComponent.module.css";
 interface RecommenderComponentProps {
   recommender: Recommender;
 }
@@ -28,10 +28,11 @@ export const RecommenderComponent = ({
 
   return (
     <>
-      <span>
-        Hihtäjän pituus ({rangeToString(recommender.applicableFor)} cm)
-      </span>
+      <p>
+        Syötä hiihtäjän pituus ({rangeToString(recommender.applicableFor)} cm)
+      </p>
       <input
+        className={styles.lengthInput}
         type="text"
         /**  
            TODO pattern of only numbers
@@ -41,7 +42,12 @@ export const RecommenderComponent = ({
         onChange={onInputChanged}
         value={lengthStr}
       />
-      {recommendation && renderRecommendation(recommendation)}
+      {recommendation && (
+        <>
+          <hr className={styles.recommendationDivider} />
+          {renderRecommendation(recommendation)}
+        </>
+      )}
     </>
   );
 };
@@ -60,12 +66,14 @@ const renderRecommendation = (recommendation: Recommendation): JSX.Element => {
         </>
       );
   }
-  return <>{JSON.stringify(recommendation)}</>;
 };
 
 const renderSizes = ({ classic, skating }: Sizes): JSX.Element => {
   return (
-    <>
+    <div className={styles.adults}>
+      <div className={styles.adultsTitle}>
+        Aikuisille ja isommille lapsille:
+      </div>
       <span>Sukset</span>
       <ul>
         <li>Perinteinen: {rangeToString(classic.skis)}</li>
@@ -76,30 +84,35 @@ const renderSizes = ({ classic, skating }: Sizes): JSX.Element => {
         <li>Perinteinen: {rangeToString(classic.poles)}</li>
         <li>Luistelu: {rangeToString(skating.poles)}</li>
       </ul>
-    </>
+    </div>
   );
 };
 
 const renderTableRows = (rows: ChildTableRow[]): JSX.Element => {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Lapsen pituus</th>
-          <th>Sukset (cm)</th>
-          <th>Sauvat (cm)</th>
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((row) => (
-          <tr key={row.childLength}>
-            <td>{row.childLength}</td>
-            <td>{row.skiLength}</td>
-            <td>{row.poleLength}</td>
+    <div className={styles.children}>
+      <div className={styles.childrenTitle}>
+        Pienempien hiihtäjien taulukosta:
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Lapsen pituus</th>
+            <th>Sukset (cm)</th>
+            <th>Sauvat (cm)</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr key={row.childLength}>
+              <td>{row.childLength}</td>
+              <td>{row.skiLength}</td>
+              <td>{row.poleLength}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

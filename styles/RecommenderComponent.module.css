@@ -1,0 +1,37 @@
+.lengthInput {
+  width: 3rem;
+  font-size: 1rem;
+  box-shadow: #ccc 0px 1px 3px 0px inset;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #333;
+}
+
+hr.recommendationDivider {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.children {
+  margin: 1rem 0;
+}
+.children table {
+  border-collapse: collapse;
+}
+
+.children table th,
+.children table td {
+  border: 1px solid #999;
+  font-weight: normal;
+  padding: 0.5rem;
+}
+
+.children table td {
+  text-align: left;
+}
+
+.childrenTitle,
+.adultsTitle {
+  font-weight: bold;
+  text-align: center;
+  margin: 1rem 0;
+}
