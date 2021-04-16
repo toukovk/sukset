@@ -34,10 +34,6 @@ export const RecommenderComponent = ({
       <input
         className={styles.lengthInput}
         type="text"
-        /**  
-           TODO pattern of only numbers
-           TODO min/max values?
-        */
         maxLength={3}
         onChange={onInputChanged}
         value={lengthStr}
