@@ -4,6 +4,33 @@ import { Recommendation } from "./types";
 
 const recommend = getRecommender(exampleConfig).getRecommendation;
 
+const childTableRow90 = {
+  childLength: 90,
+  skiLength: 91,
+  poleLength: 92,
+};
+const childTableRow100 = {
+  childLength: 100,
+  skiLength: 101,
+  poleLength: 102,
+};
+const childTableRow110 = {
+  childLength: 110,
+  skiLength: 111,
+  poleLength: 112,
+};
+const childTableRow120 = {
+  childLength: 120,
+  skiLength: {
+    min: 121,
+    max: 125,
+  },
+  poleLength: {
+    min: 122,
+    max: 126,
+  },
+};
+
 describe("getRecommendation", () => {
   describe("for lengths outside applicable ranges", () => {
     it("should return undefined for too small length", () => {
@@ -58,13 +85,7 @@ describe("getRecommendation", () => {
 
       const expected: Recommendation = {
         type: "only-table-rows",
-        rows: [
-          {
-            childLength: 100,
-            skiLength: 101,
-            poleLength: 102,
-          },
-        ],
+        rows: [childTableRow100],
       };
       expect(recommendation).toEqual(expected);
     });
@@ -74,13 +95,7 @@ describe("getRecommendation", () => {
 
       const expected: Recommendation = {
         type: "only-table-rows",
-        rows: [
-          {
-            childLength: 90,
-            skiLength: 91,
-            poleLength: 92,
-          },
-        ],
+        rows: [childTableRow90],
       };
       expect(recommendation).toEqual(expected);
     });
@@ -90,13 +105,7 @@ describe("getRecommendation", () => {
 
       const expected: Recommendation = {
         type: "only-table-rows",
-        rows: [
-          {
-            childLength: 90,
-            skiLength: 91,
-            poleLength: 92,
-          },
-        ],
+        rows: [childTableRow90],
       };
       expect(recommendation).toEqual(expected);
     });
@@ -107,18 +116,7 @@ describe("getRecommendation", () => {
 
       const expected: Recommendation = {
         type: "only-table-rows",
-        rows: [
-          {
-            childLength: 100,
-            skiLength: 101,
-            poleLength: 102,
-          },
-          {
-            childLength: 110,
-            skiLength: 111,
-            poleLength: 112,
-          },
-        ],
+        rows: [childTableRow100, childTableRow110],
       };
       expect(recommendation101).toEqual(expected);
       expect(recommendation109).toEqual(expected);
@@ -131,19 +129,7 @@ describe("getRecommendation", () => {
 
       const expected: Recommendation = {
         type: "both",
-        rows: [
-          {
-            childLength: 120,
-            skiLength: {
-              min: 121,
-              max: 125,
-            },
-            poleLength: {
-              min: 122,
-              max: 126,
-            },
-          },
-        ],
+        rows: [childTableRow120],
         sizes: {
           classic: {
             poles: {
@@ -175,19 +161,7 @@ describe("getRecommendation", () => {
 
       const expected: Recommendation = {
         type: "both",
-        rows: [
-          {
-            childLength: 120,
-            skiLength: {
-              min: 121,
-              max: 125,
-            },
-            poleLength: {
-              min: 122,
-              max: 126,
-            },
-          },
-        ],
+        rows: [childTableRow120],
         sizes: {
           classic: {
             poles: {
@@ -219,24 +193,7 @@ describe("getRecommendation", () => {
 
       const expected: Recommendation = {
         type: "both",
-        rows: [
-          {
-            childLength: 110,
-            skiLength: 111,
-            poleLength: 112,
-          },
-          {
-            childLength: 120,
-            skiLength: {
-              min: 121,
-              max: 125,
-            },
-            poleLength: {
-              min: 122,
-              max: 126,
-            },
-          },
-        ],
+        rows: [childTableRow110, childTableRow120],
         sizes: {
           classic: {
             poles: {
