@@ -54,7 +54,6 @@ export default function Home(props: HomeProps): JSX.Element {
     <div className={styles.container}>
       <Head>
         <title>🎿 {i.title} 🎿</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
