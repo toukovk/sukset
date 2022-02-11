@@ -2,7 +2,7 @@
 
 A simple app to calculate rough size recommendations for cross-country skiing skies & poles. Also a try-out for [Next.js](https://nextjs.org/) with TypeScript and internationalization.
 
-You can try the app at [https://sukset.vercel.app/](https://sukset.vercel.app/).
+You can try the app at [https://suksilaskuri.net/](https://suksilaskuri.net/).
 
 ## Running locally
 
